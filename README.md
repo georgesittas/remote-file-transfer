@@ -36,14 +36,17 @@ cd server
 ./dataServer -p <port> -s <thread_pool_size> -q <queue_size> -b <block_size>
 ```
 
-Note: `<thread_pool_size>` designates the number of worker threads to be used.
-
 ### Running the client
 
 ```
 cd client
 ./remoteClient -i <server_ip> -p <server_port> -d <directory>
 ```
+
+#### Notes
+
+- The option `<thread_pool_size>` designates the number of worker threads to be used.
+- The server starts looking at the `server/test_files/`. So, if `<directory>` is equal to `.`, then `test_files/` will be transferred.
 
 ### Testing
 
@@ -56,11 +59,6 @@ cd client
 
 This script logs the client's outputs under the directory `client/log_files`, which it creates upon execution. The transferred files will be
 located under `client/`
-
-#### Notes
-
-- The option `<thread_pool_size>` designates the number of worker threads to be used.
-- The server starts looking at the `server/test_files/`. So, if `<directory>` is equal to `.`, then `test_files/` will be transferred.
 
 ### Assumptions
 
