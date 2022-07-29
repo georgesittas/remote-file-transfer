@@ -16,7 +16,7 @@ in blocks of a fixed size (in bytes). So, at most one file at a time can be writ
 ## Protocol
 
 - The client requests a directory transfer by sending a message of the form `<size> <name>`.
-- The server initially responds by sending a message of the form `<nfiles>`, designating the expected number of files.
+- The server responds by sending a message of the form `<nfiles>`, designating the expected number of files.
 - After that, the server sends for each file:
   - A message of the form `<filename_size> <filename> <file_size>`, designating the file's metadata.
   - Messages of the form `<payload_size> <payload>`, designating the file's data.
