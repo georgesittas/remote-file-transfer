@@ -46,7 +46,7 @@ cd client
 #### Notes
 
 - The option `<thread_pool_size>` designates the number of worker threads to be used.
-- The server starts looking at the `server/test_files/`. So, if `<directory>` is equal to `.`, then `test_files/` will be transferred.
+- The server starts looking at `server/test_files/`. So, if `<directory>` is `.`, then `test_files/` will be transferred.
 
 ### Testing
 
