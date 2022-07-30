@@ -20,7 +20,8 @@ in blocks of a fixed size (in bytes). So, at most one file at a time can be writ
 - After that, the server sends for each file:
   - A message of the form `<filename_size> <filename> <file_size>`, designating the file's metadata.
   - Messages of the form `<payload_size> <payload>`, designating the file's data.
-- After the transfer has been completed, the client responds with a message of 1 (arbitrary) byte, designating an ACK response.
+- After the transfer has been completed, the client responds with a message of 1 (arbitrary) byte, designating an ACK response,
+  in order to gracefully terminate the transaction and release acquired resources.
 
 Note: all transmitted integers take up 4 bytes, and the transmission order is least-significant-byte-first.
 
