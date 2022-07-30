@@ -66,3 +66,9 @@ located under `client/`
 - The client knows the server's file system hierarchy.
 - The server doesn't contain any empty directory.
 - The server will be running 24/7, so it can only be terminated forcefully (CTRL-C or kill).
+
+## To Do
+
+- Abstract away code that does byte-level manipulation (masks etc), because it's visual noise.
+
+
