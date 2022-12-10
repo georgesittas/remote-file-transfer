@@ -1,6 +1,6 @@
 # Remote File Transferring
 
-For this project, I've implemented a file transferring protocol on top of TCP/IP and created a client-server application which uses it for
+This repo contains the implementation of a file transferring protocol on top of TCP/IP, as well as a client-server application which uses it for
 remote file transferring. Specifically, a client may make a request for a directory transfer, in which case the server will respond by
 sending each file in said directory, in such a way that the client can replicate the same hierarchy locally. The communication happens over
 POSIX sockets and the server is multithreaded, so that each client may be served by a different thread. 
