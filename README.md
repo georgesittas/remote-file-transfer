@@ -31,8 +31,8 @@ cd client
 
 #### Notes
 
-- The option `<thread_pool_size>` designates the number of worker threads to be used.
-- The server starts looking at `server/test_files`. So, if `<directory>` is `.`, then `test_files` will be transferred.
+- The parameter `<thread_pool_size>` sets the number of worker threads to be used.
+- The server's treats `server/test_files` as its current working directory for tranfers.
 
 ### Testing
 
@@ -46,23 +46,21 @@ The transferred files will be located under the `client` directory.
 
 ## Protocol
 
-- The client requests a directory transfer by sending a message of the form `<size> <name>`.
-- The server responds by sending a message of the form `<nfiles>`, designating the expected number of files.
-- For each file, the server sends:
-  - A message of the form `<filename_size> <filename> <file_size>`, designating the file's metadata.
-  - Messages of the form `<payload_size> <payload>`, designating the file's data.
-- After the transfer has been completed, the client responds with a message of 1 (arbitrary) byte, representing
-  an ACK response, in order to gracefully terminate the transaction and release the acquired system resources.
+- The client begins by requesting a directory transfer: `<name_size> <name>`.
+- The server responds with `<number_of_files>`.
+- Then, for each file it sends `<filename_size> <filename> <file_size> <payload_size> <payload>`.
+- After the transfer has been completed, the client sends an arbitrary byte value, representing
+  an ACK response, and the transaction is gracefully terminated.
 
-Note: all transmitted integers take up 4 bytes, and the transmission order is least-significant-byte-first.
+All transmitted integers take up 4 bytes, and the byte order is Little Endian.
 
 ## Architecture
 
-The server spawns a _communication thread_ for each accepted connection with a client, which serves that client. Furthermore, it maintains
-a queue for keeping track of the file transfers that need to be completed, as well as a _worker thread_ pool for handling these transfers.
-If at any given point the queue is full, the communication thread blocks until at least one file is transferred. On the other hand, if
-at any given point the queue is empty, the worker threads block until a new transfer task arrives. Files are to be transferred atomically
-in blocks of a fixed size (in bytes). So, at most one file at a time can be written to a client's socket.
+The server spawns a _communication thread_ to serve each accepted connection with a client. Furthermore, it maintains a
+queue for keeping track of the file transfers that need to be completed, as well as a _worker thread_ pool for processing
+these transfers. If at any given point the queue is full, the communication thread blocks until at least one file is transferred.
+On the other hand, if at any given point the queue is empty, the worker threads block until a new transfer task arrives. Files
+are transferred atomically in blocks of a fixed size, so at most one file at a time can be written to a client's socket.
 
 ## Assumptions
 
