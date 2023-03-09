@@ -1,4 +1,4 @@
-# Remote File Transferring
+# Remote File Transfer
 
 This is a client-server application that uses a file transferring protocol on top of TCP/IP for Remote File Transfer. When a
 client requests a directory transfer, the server responds by transmitting each file in the target directory, until it's been
