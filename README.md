@@ -1,9 +1,9 @@
 # Remote File Transferring
 
-This is an implementation of a file transferring protocol on top of TCP/IP, as well as a client-server application which uses it for
-Remote File Transfer. A client can request a directory transfer, in which case the server will respond by sending back each file in
-the target directory, until the hierarchy has been fully copied to the client's file system. The communication happens over POSIX
-sockets and the server uses threads for serving multiple clients concurrently.
+This is a client-server application, which uses a custom file transferring protocol on top of TCP/IP for Remote File Transfer.
+A client can request a directory transfer, in which case the server will respond by sending back each file in the target directory,
+until the hierarchy has been fully copied to the client's file system. The communication happens over POSIX sockets and the server
+uses threads for serving multiple clients concurrently.
 
 ## Usage
 
