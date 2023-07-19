@@ -32,7 +32,7 @@ cd client
 #### Notes
 
 - The parameter `<thread_pool_size>` sets the number of worker threads to be used.
-- The server's treats `server/test_files` as its current working directory for tranfers.
+- The server treats `server/test_files` as its current working directory for tranfers.
 
 ### Testing
 
